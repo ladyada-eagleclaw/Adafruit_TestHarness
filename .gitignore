@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.codex/
+.claude/
+.gemini/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
