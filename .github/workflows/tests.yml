@@ -1,0 +1,15 @@
+name: Host tests
+on: [push, pull_request]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check C++ formatting
+        run: |
+          python3 -m pip install clang-format==22.1.8
+          clang-format --dry-run --Werror include/*.h src/*.cpp tests/*.cpp
+      - name: Run all host tests with sanitizers
+        run: |
+          python3 run_tests.py
+          python3 -m unittest discover -s tests -p 'test_*.py'
